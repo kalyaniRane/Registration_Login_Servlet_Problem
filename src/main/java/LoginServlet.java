@@ -19,8 +19,9 @@ public class LoginServlet extends HttpServlet {
         String pass=req.getParameter("pass");
 
         String ValidName="^[A-Z][a-z]{3,}$";
+        String ValidPassword="^((?=[^\\W\\_]*[\\W\\_][^\\W\\_]*$)(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9\\W\\_]{8,})$";
 
-        if(user!=null && user.matches(ValidName))
+        if(user!=null && user.matches(ValidName) && pass!=null && pass.matches(ValidPassword))
         {
             req.setAttribute("user",user);
             req.getRequestDispatcher("LoginSuccess.jsp").forward(req,resp);

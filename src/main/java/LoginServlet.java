@@ -1,6 +1,5 @@
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +9,7 @@ import java.io.PrintWriter;
 
 @WebServlet(
         description = "Login Servlet Testing",
-        urlPatterns = {"/LoginServlet"},
-        initParams = {
-                @WebInitParam(name = "user",value = "kalyani"),
-                @WebInitParam(name = "pass",value = "123")
-        }
+        urlPatterns = {"/LoginServlet"}
 )
 public class LoginServlet extends HttpServlet {
 
@@ -23,10 +18,9 @@ public class LoginServlet extends HttpServlet {
         String user=req.getParameter("user");
         String pass=req.getParameter("pass");
 
-        String userID = getServletConfig().getInitParameter("user");
-        String  password = getServletConfig().getInitParameter("pass");
+        String ValidName="^[A-Z][a-z]{3,}$";
 
-        if(userID.equals(user) && password.equals(pass))
+        if(user!=null && user.matches(ValidName))
         {
             req.setAttribute("user",user);
             req.getRequestDispatcher("LoginSuccess.jsp").forward(req,resp);

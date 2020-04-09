@@ -11,6 +11,7 @@ import java.io.PrintWriter;
         description = "Login Servlet Testing",
         urlPatterns = {"/LoginServlet"}
 )
+
 public class LoginServlet extends HttpServlet {
 
     @Override
